@@ -1,9 +1,10 @@
 <?php
 
 
+define('IN', 'admin.php');
 
 
-// session_start();
+session_start();
 include('functions.php');
 
 /*
@@ -13,18 +14,17 @@ check_login()
 2 加载相应的功能模块
 */
 // check_login()
-//接受请求 默认是index 页面
+//接受请求 默认是mian 页面
 //isset :判断一个变量是否存在 有可能出现值为空的情况 所以这里应该使用！empty更合适
-$action = !empty($_GET['a']) ? $_GET['a'] : 'index';
+$action = !empty($_GET['a']) ? $_GET['a'] : 'main';
+//3 登录权限验证
+$noNeedLogin = ['login', 'dologin'];  //不需要验证登录的地址
+if( !in_array($action, $noNeedLogin) ){
 
-// //3 登录权限验证
-// $noNeedLogin = ['login', 'dologin'];  //不需要验证登录的地址
-// if( !in_array($action, $noNeedLogin) ){
+    check_login();
+}
 
-//     check_login();
-// }
-
-include('./controller/index/'. $action . '.php');
+include('./controller/admin/'. $action . '.php');
 
 // if($action == 'main'){
 //     include('main.php');

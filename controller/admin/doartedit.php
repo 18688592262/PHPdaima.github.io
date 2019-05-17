@@ -13,4 +13,4 @@ file_put_contents('./data/arts/'.$oldtitle, $content);
 rename('./data/arts/'.$oldtitle, './data/arts/'.$title);
 
 //提示跳转
-message('修改成功', 'index.php?a=artlist');
+message('修改成功', 'artlist');
